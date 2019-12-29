@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TruthOrDare</string>
+    <string name="truth_or_dare">Truth or dare</string>
+    <string name="exit">Exit</string>
+    <string name="addPlayers">add Players</string>
+    <string name="selectPackage">select package</string>
+</resources>
