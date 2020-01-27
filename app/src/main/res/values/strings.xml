@@ -5,4 +5,7 @@
     <string name="continueGame">Continue</string>
     <string name="newGame">Start new game</string>
     <string name="enter_player_name">Enter player name</string>
+    <string name="title_activity_add_questions">AddQuestionsActivity</string>
+    <string name="add_random_player">add random player</string>
+    <string name="addQuestion">Add</string>
 </resources>

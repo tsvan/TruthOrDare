@@ -1,6 +1,7 @@
 package tsvan.com
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -29,16 +30,22 @@ class MainActivity : AppCompatActivity() {
         builder.setView(dialogLayout)
         builder.setPositiveButton("Add", null)
         builder.setNegativeButton("Close") { dialogInterface, _ -> dialogInterface.dismiss() }
-        builder.setNeutralButton("Next") { _, _ -> Toast.makeText(applicationContext, "next ", Toast.LENGTH_SHORT).show() }
+        builder.setNeutralButton("Next", null)
 
         val dialog = builder.create()
 
         dialog.setOnShowListener {
-            val okButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
-            okButton.setOnClickListener {
+            val addButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            addButton.setOnClickListener {
                 //dialog.dismiss()
                 Toast.makeText(applicationContext, "Add - " + editText.text.toString(), Toast.LENGTH_SHORT).show()
                 editText?.text?.clear()
+            }
+
+            val nextButton = dialog.getButton(AlertDialog.BUTTON_NEUTRAL)
+            nextButton.setOnClickListener {
+                val intent = Intent(this, AddQuestionsActivity::class.java)
+                startActivity(intent)
             }
         }
 
