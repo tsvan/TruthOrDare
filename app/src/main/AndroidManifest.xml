@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".AddPackageActivity"
+            android:label="@string/title_activity_add_package"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".AddQuestionsActivity"
             android:label="@string/title_activity_add_questions"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
