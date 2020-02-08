@@ -12,4 +12,5 @@
     <string name="title_activity_add_package">AddPackageActivity</string>
     <string name="close">close</string>
     <string name="create">Create</string>
+    <string name="addPackage">add package</string>
 </resources>

@@ -18,6 +18,12 @@ class MainActivity : AppCompatActivity() {
         newGame.setOnClickListener {
             this.addPlayersAction()
         }
+
+        editPackage.setOnClickListener {
+            val intent = Intent(this, AddPackageActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     @SuppressLint("InflateParams")

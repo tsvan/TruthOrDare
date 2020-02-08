@@ -41,4 +41,18 @@ class DbConnect(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,D
         return db.insert(TABLE_PACKAGES, null, values)
     }
 
+    fun getAllPackages() : ArrayList<String> {
+        val questionPackages = ArrayList<String>()
+        var name = ""
+        val selectQuery = "SELECT  * FROM $TABLE_PACKAGES"
+        val db = this.readableDatabase
+        val c = db.rawQuery(selectQuery, null)
+        if (c.moveToFirst()) {
+            do {
+                name = c.getString(c.getColumnIndex(KEY_NAME))
+                questionPackages.add(name)
+            } while (c.moveToNext())
+        }
+        return questionPackages
+    }
 }
