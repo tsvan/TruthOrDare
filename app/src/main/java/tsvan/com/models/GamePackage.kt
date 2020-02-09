@@ -1,4 +1,4 @@
 package tsvan.com.models
 
-class GamePackage {
+class GamePackage(var id: Int, var name: String) {
 }

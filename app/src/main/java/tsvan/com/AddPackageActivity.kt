@@ -4,11 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_add_package.*
 import tsvan.com.infrastructure.DbConnect
+import tsvan.com.models.GamePackage
 
 class AddPackageActivity : AppCompatActivity() {
 
@@ -23,6 +23,43 @@ class AddPackageActivity : AppCompatActivity() {
         createPackage.setOnClickListener {
             this.addPackage()
         }
+
+        this.renderPackages()
+    }
+
+    private fun renderPackages() {
+        val packages = dbConnect!!.getAllPackages()
+
+        for( pack in packages){
+          this.addPackageRow(pack)
+        }
+    }
+
+    private fun addPackageRow(gamePack: GamePackage) {
+        var tableLayout = tableLayout.findViewById<TableLayout>(R.id.tableLayout)
+        var tableRow  = TableRow(this)
+        var rowIdText = TextView(this)
+        var rowNameText = TextView(this)
+        var buttonDelete = Button(this)
+        var buttonEdit = Button(this)
+        rowIdText.setText(gamePack.id.toString())
+        rowNameText.setText(gamePack.name)
+        tableRow.addView(rowIdText)
+        tableRow.addView(rowNameText)
+        buttonDelete.setText("delete")
+        buttonDelete.setOnClickListener {
+
+            dbConnect!!.deletePackage(gamePack.id)
+        }
+        buttonEdit.setText("edit")
+        buttonEdit.setOnClickListener {
+            val intent = Intent(this, EditPackageActivity::class.java)
+            intent.putExtra("id", gamePack.id)
+            startActivity(intent)
+        }
+        tableRow.addView(buttonDelete)
+        tableRow.addView(buttonEdit)
+        tableLayout.addView(tableRow)
     }
 
     @SuppressLint("InflateParams")
