@@ -12,7 +12,7 @@ class DbConnect(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,D
 {
     companion object {
 
-        var DATABASE_NAME = "trust_or+dare"
+        var DATABASE_NAME = "trust_or_dare"
         private val DATABASE_VERSION = 1
         private val TABLE_PACKAGES = "packages"
         private val KEY_ID = "id"

@@ -9,13 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditPackageActivity"></activity>
+        <activity android:name=".AddQuestionsActivity"></activity>
+        <activity android:name=".EditPackageActivity" />
         <activity
             android:name=".AddPackageActivity"
             android:label="@string/title_activity_add_package"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AddQuestionsActivity"
+            android:name=".AddQuestionActivity"
             android:label="@string/title_activity_add_questions"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity">

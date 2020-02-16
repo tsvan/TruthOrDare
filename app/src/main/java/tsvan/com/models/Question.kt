@@ -1,4 +1,4 @@
 package tsvan.com.models
 
-class Question {
+class Question(var id: Int, var text: String, var packageId: Int){
 }
