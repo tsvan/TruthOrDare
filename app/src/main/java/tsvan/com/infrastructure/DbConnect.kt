@@ -5,6 +5,8 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import tsvan.com.models.GamePackage
+import tsvan.com.models.Question
+import tsvan.com.repository.QuestionRepository
 import java.lang.reflect.Array
 
 //https://demonuts.com/kotlin-sqlite-database/
@@ -18,7 +20,14 @@ class DbConnect(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,D
         private val KEY_ID = "id"
         private val KEY_NAME = "name"
 
-        /*CREATE TABLE students ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, phone_number TEXT......);*/
+        private val TABLE_QUESTIONS = "questions"
+        private val KEY_PACKAGE_ID = "package_id"
+        private val KEY_QUESTION = "text"
+
+        private val CREATE_TABLE_QUESTIONS = ("CREATE TABLE "
+                + TABLE_QUESTIONS + "(" + KEY_ID
+                + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_QUESTION + " TEXT ," + KEY_PACKAGE_ID + " INTEGER );")
+
         private val CREATE_TABLE_PACKAGES = ("CREATE TABLE "
                 + TABLE_PACKAGES + "(" + KEY_ID
                 + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_NAME + " TEXT );")
@@ -26,10 +35,12 @@ class DbConnect(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,D
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(CREATE_TABLE_PACKAGES)
+        db.execSQL(CREATE_TABLE_QUESTIONS)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS '$TABLE_PACKAGES'")
+        db.execSQL("DROP TABLE IF EXISTS '$TABLE_QUESTIONS'")
         onCreate(db)
     }
 
@@ -61,6 +72,42 @@ class DbConnect(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,D
                 name = c.getString(c.getColumnIndex(KEY_NAME))
                 id = c.getString(c.getColumnIndex(KEY_ID))
                 questionPackages.add(GamePackage(id.toInt(), name))
+            } while (c.moveToNext())
+        }
+        return questionPackages
+    }
+
+    //----------------------------------
+
+    fun addQuestion(packageId: Int, question: String): Long {
+        val db = this.writableDatabase
+        // Creating content values
+        val values = ContentValues()
+        values.put(KEY_QUESTION, question)
+        values.put(KEY_PACKAGE_ID, packageId)
+        // insert row in students table
+
+        return db.insert(TABLE_QUESTIONS, null, values)
+    }
+
+    fun deleteQuestion(id: Int): Int {
+        val db = this.writableDatabase
+        // Creating content values
+        return db.delete(TABLE_QUESTIONS, "id = ?", arrayOf(id.toString()))
+    }
+
+    fun getPackageQuestions(packageId: Int) : ArrayList<Question> {
+        val questionPackages = ArrayList<Question>()
+        var text = ""
+        var id = ""
+        val selectQuery = "SELECT  * FROM ${TABLE_QUESTIONS} WHERE ${KEY_PACKAGE_ID} = $packageId"
+        val db = this.readableDatabase
+        val c = db.rawQuery(selectQuery, null)
+        if (c.moveToFirst()) {
+            do {
+                text = c.getString(c.getColumnIndex(KEY_QUESTION))
+                id = c.getString(c.getColumnIndex(KEY_ID))
+                questionPackages.add(Question(id.toInt(), text, packageId))
             } while (c.moveToNext())
         }
         return questionPackages
