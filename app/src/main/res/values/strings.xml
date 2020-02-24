@@ -13,4 +13,6 @@
     <string name="close">close</string>
     <string name="create">Create</string>
     <string name="addPackage">add package</string>
+    <string name="player1">player1</string>
+    <string name="player2">player2</string>
 </resources>

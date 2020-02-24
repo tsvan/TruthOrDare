@@ -1,14 +1,17 @@
 package tsvan.com
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.*
+import android.widget.Button
+import android.widget.TableLayout
+import android.widget.TableRow
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_add_package.tableLayout
 import kotlinx.android.synthetic.main.activity_add_questions.*
 import tsvan.com.infrastructure.DbConnect
 import tsvan.com.models.Question
-import tsvan.com.repository.QuestionRepository
+
 
 class AddQuestionsActivity : AppCompatActivity() {
 
@@ -29,6 +32,14 @@ class AddQuestionsActivity : AppCompatActivity() {
             intent.putExtra("id", this.packageId)
             startActivity(intent)
         }
+        this.renderQuestions()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+
+        var tableLayout = tableLayout.findViewById<TableLayout>(R.id.tableLayout)
+        tableLayout.removeAllViews()
         this.renderQuestions()
     }
 
