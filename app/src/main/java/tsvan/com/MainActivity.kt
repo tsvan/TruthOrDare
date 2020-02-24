@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
             val nextButton = dialog.getButton(AlertDialog.BUTTON_NEUTRAL)
             nextButton.setOnClickListener {
-                val intent = Intent(this, AddQuestionActivity::class.java)
+                val intent = Intent(this, SelectPackageActivity::class.java)
                 startActivity(intent)
             }
         }
