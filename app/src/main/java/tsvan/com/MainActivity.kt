@@ -8,6 +8,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_main.*
+import tsvan.com.models.Game
+import tsvan.com.models.Player
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,12 +18,24 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         newGame.setOnClickListener {
+            Game.instance.clear()
             this.addPlayersAction()
         }
 
         editPackage.setOnClickListener {
             val intent = Intent(this, AddPackageActivity::class.java)
             startActivity(intent)
+        }
+
+        continueGame.setOnClickListener {
+            if(Game.instance.questions != null) {
+                val intent = Intent(this, GameSliderActivity::class.java)
+                startActivity(intent)
+            }
+            else {
+                Toast.makeText(applicationContext, "can only start a new game ", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
     }
@@ -45,6 +59,7 @@ class MainActivity : AppCompatActivity() {
             addButton.setOnClickListener {
                 //dialog.dismiss()
                 Toast.makeText(applicationContext, "Add - " + editText.text.toString(), Toast.LENGTH_SHORT).show()
+                Game.instance.players!!.add(Player(editText.text.toString()))
                 editText?.text?.clear()
             }
 

@@ -1,4 +1,4 @@
 package tsvan.com.models
 
-class Player {
+class Player( var name: String) {
 }
