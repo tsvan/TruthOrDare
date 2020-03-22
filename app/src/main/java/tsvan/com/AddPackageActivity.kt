@@ -9,7 +9,6 @@ import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_add_package.*
 import tsvan.com.infrastructure.DbConnect
 import tsvan.com.models.GamePackage
-import tsvan.com.repository.QuestionRepository
 
 class AddPackageActivity : AppCompatActivity() {
 

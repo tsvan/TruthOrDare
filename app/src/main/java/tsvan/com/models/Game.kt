@@ -4,30 +4,18 @@ class Game {
 
     private var index = 0
 
-    public var gamePackage : GamePackage? = null
-        get() = field
-        set(value) {
-            field = value
-        }
-    public var players : ArrayList<Player>? = null
-        get() = field
-        set(value) {
-            field = value
-        }
+    var gamePackage : GamePackage? = null
+    var players : ArrayList<Player>? = null
 
-    public var questions : ArrayList<Question>? = null
-        get() = field
-        set(value) {
-            field = value
-        }
+    var questions : ArrayList<Question>? = null
 
     companion object {
         val instance = Game()
     }
-    public fun clear() {
+    fun clear() {
         instance.gamePackage = null
-        instance.players = ArrayList<Player>()
-        instance.questions = ArrayList<Question>()
+        instance.players = ArrayList()
+        instance.questions = ArrayList()
     }
 
     private fun formatQuestionText(question : String) :String {
@@ -44,7 +32,7 @@ class Game {
         return tmp
     }
 
-    public fun getNextQuestion(): String {
+    fun getNextQuestion(): String {
         if(instance.index < instance.questions!!.count() ) {
             val text = formatQuestionText(instance.questions!!.get(instance.index).text)
             instance.index ++
