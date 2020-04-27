@@ -15,4 +15,8 @@
     <string name="addPackage">add package</string>
     <string name="player1">player1</string>
     <string name="player2">player2</string>
+    <string name="select">select</string>
+    <string name="edit">edit</string>
+    <string name="delete">delete</string>
+    <string name="InitQuestion">click here</string>
 </resources>

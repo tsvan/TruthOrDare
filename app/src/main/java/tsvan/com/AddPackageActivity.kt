@@ -12,7 +12,7 @@ import tsvan.com.models.GamePackage
 
 class AddPackageActivity : AppCompatActivity() {
 
-    private var dbConnect : DbConnect? = null
+    private var dbConnect: DbConnect? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,28 +30,28 @@ class AddPackageActivity : AppCompatActivity() {
     private fun renderPackages() {
         val packages = dbConnect!!.getAllPackages()
 
-        for( pack in packages){
-          this.addPackageRow(pack)
+        for (pack in packages) {
+            this.addPackageRow(pack)
         }
     }
 
     private fun addPackageRow(gamePack: GamePackage) {
-        var tableLayout = tableLayout.findViewById<TableLayout>(R.id.tableLayout)
-        var tableRow  = TableRow(this)
-        var rowIdText = TextView(this)
-        var rowNameText = TextView(this)
-        var buttonDelete = Button(this)
-        var buttonEdit = Button(this)
-        rowIdText.setText(gamePack.id.toString())
-        rowNameText.setText(gamePack.name)
+        val tableLayout = tableLayout.findViewById<TableLayout>(R.id.tableLayout)
+        val tableRow = TableRow(this)
+        val rowIdText = TextView(this)
+        val rowNameText = TextView(this)
+        val buttonDelete = Button(this)
+        val buttonEdit = Button(this)
+        rowIdText.text = gamePack.id.toString()
+        rowNameText.text = gamePack.name
         tableRow.addView(rowIdText)
         tableRow.addView(rowNameText)
-        buttonDelete.setText("delete")
+        buttonDelete.text = getString(R.string.delete)
         buttonDelete.setOnClickListener {
 
             dbConnect!!.deletePackage(gamePack.id)
         }
-        buttonEdit.setText("edit")
+        buttonEdit.text = getString(R.string.edit)
         buttonEdit.setOnClickListener {
             val intent = Intent(this, AddQuestionsActivity::class.java)
             intent.putExtra("id", gamePack.id)
@@ -68,7 +68,7 @@ class AddPackageActivity : AppCompatActivity() {
         val inflater = layoutInflater
         builder.setTitle("Add package")
         val dialogLayout = inflater.inflate(R.layout.add_package_dialog, null)
-        val editText  = dialogLayout.findViewById<EditText>(R.id.packageName)
+        val editText = dialogLayout.findViewById<EditText>(R.id.packageName)
         builder.setView(dialogLayout)
         builder.setPositiveButton("Add", null)
         builder.setNegativeButton("Close") { dialogInterface, _ -> dialogInterface.dismiss() }
@@ -81,7 +81,11 @@ class AddPackageActivity : AppCompatActivity() {
             addButton.setOnClickListener {
                 //dialog.dismiss()
                 dbConnect!!.addPackage(editText.text.toString())
-                Toast.makeText(applicationContext, "Add to db- " + editText.text.toString(), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    applicationContext,
+                    "Add to db- " + editText.text.toString(),
+                    Toast.LENGTH_SHORT
+                ).show()
                 editText?.text?.clear()
             }
 
@@ -89,7 +93,7 @@ class AddPackageActivity : AppCompatActivity() {
             nextButton.setOnClickListener {
                 val list = dbConnect!!.getAllPackages()
 
-                Toast.makeText(applicationContext,list.toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, list.toString(), Toast.LENGTH_LONG).show()
 
             }
         }

@@ -38,7 +38,7 @@ class AddQuestionsActivity : AppCompatActivity() {
     override fun onRestart() {
         super.onRestart()
 
-        var tableLayout = tableLayout.findViewById<TableLayout>(R.id.tableLayout)
+        val tableLayout = tableLayout.findViewById<TableLayout>(R.id.tableLayout)
         tableLayout.removeAllViews()
         this.renderQuestions()
     }
@@ -52,16 +52,16 @@ class AddQuestionsActivity : AppCompatActivity() {
     }
 
     private fun addQuestionRow(question: Question) {
-        var tableLayout = tableLayout.findViewById<TableLayout>(R.id.tableLayout)
-        var tableRow  = TableRow(this)
-        var rowIdText = TextView(this)
-        var rowTextText = TextView(this)
-        var buttonDelete = Button(this)
-        rowIdText.setText(question.id.toString())
-        rowTextText.setText(question.text)
+        val tableLayout = tableLayout.findViewById<TableLayout>(R.id.tableLayout)
+        val tableRow  = TableRow(this)
+        val rowIdText = TextView(this)
+        val rowTextText = TextView(this)
+        val buttonDelete = Button(this)
+        rowIdText.text = question.id.toString()
+        rowTextText.text = question.text
         tableRow.addView(rowIdText)
         tableRow.addView(rowTextText)
-        buttonDelete.setText("delete")
+        buttonDelete.text = getString(R.string.delete)
         buttonDelete.setOnClickListener {
 
             dbConnect!!.deleteQuestion(question.id)

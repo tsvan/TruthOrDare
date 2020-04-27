@@ -35,17 +35,17 @@ class SelectPackageActivity : AppCompatActivity() {
 
 
     private fun addPackageRow(gamePack: GamePackage) {
-        var tableLayout = tableLayout.findViewById<TableLayout>(R.id.tableLayout)
-        var tableRow  = TableRow(this)
-        var rowIdText = TextView(this)
-        var rowNameText = TextView(this)
-        var buttonEdit = Button(this)
-        rowIdText.setText(gamePack.id.toString())
-        rowNameText.setText(gamePack.name)
+        val tableLayout = tableLayout.findViewById<TableLayout>(R.id.tableLayout)
+        val tableRow  = TableRow(this)
+        val rowIdText = TextView(this)
+        val rowNameText = TextView(this)
+        val buttonEdit = Button(this)
+        rowIdText.text = gamePack.id.toString()
+        rowNameText.text = gamePack.name
         tableRow.addView(rowIdText)
         tableRow.addView(rowNameText)
 
-        buttonEdit.setText("select")
+        buttonEdit.text = getString(R.string.select)
         buttonEdit.setOnClickListener {
             Game.instance.gamePackage = GamePackage(gamePack.id, "")
             Game.instance.questions = dbConnect!!.getPackageQuestions(gamePack.id)
