@@ -6,23 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".AddQuestionActivity">
 
+
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="357dp"
-        android:layout_height="518dp"
+        android:id="@+id/questionEditText"
+        android:layout_width="327dp"
+        android:layout_height="462dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.384" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="140dp"
-        android:layout_height="14dp"
+        android:id="@+id/addQuestionTextView"
+        android:layout_width="171dp"
+        android:layout_height="33dp"
         android:layout_marginTop="16dp"
         android:text="@string/title_activity_add_questions"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,31 +33,32 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="414dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="369dp"
+        android:layout_height="53dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addQuestionTextView">
 
         <Button
             android:id="@+id/playerOneButton"
-            android:layout_width="1dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/player1" />
 
         <Button
             android:id="@+id/playerTwoButton"
-            android:layout_width="33dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/player2" />
 
         <Button
             android:id="@+id/addQuestion"
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/addQuestion" />
     </LinearLayout>
 

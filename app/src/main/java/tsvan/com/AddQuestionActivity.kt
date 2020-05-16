@@ -20,7 +20,7 @@ class AddQuestionActivity : AppCompatActivity() {
 
         val packageId = intent.extras!!.getInt("id")
 
-        val editText = findViewById<EditText>(R.id.editText)
+        val editText = findViewById<EditText>(R.id.questionEditText)
 
         playerOneButton.setOnClickListener {
             val position = editText.selectionStart

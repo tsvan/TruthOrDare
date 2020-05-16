@@ -14,7 +14,7 @@ import tsvan.com.models.GamePackage
 
 class SelectPackageActivity : AppCompatActivity() {
 
-    private var dbConnect : DbConnect? = null
+    private var dbConnect: DbConnect? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +28,7 @@ class SelectPackageActivity : AppCompatActivity() {
     private fun renderPackages() {
         val packages = dbConnect!!.getAllPackages()
 
-        for( pack in packages){
+        for (pack in packages) {
             this.addPackageRow(pack)
         }
     }
@@ -36,7 +36,7 @@ class SelectPackageActivity : AppCompatActivity() {
 
     private fun addPackageRow(gamePack: GamePackage) {
         val tableLayout = tableLayout.findViewById<TableLayout>(R.id.tableLayout)
-        val tableRow  = TableRow(this)
+        val tableRow = TableRow(this)
         val rowIdText = TextView(this)
         val rowNameText = TextView(this)
         val buttonEdit = Button(this)

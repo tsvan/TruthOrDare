@@ -28,11 +28,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         continueGame.setOnClickListener {
-            if(Game.instance.questions != null) {
+            if (Game.instance.questions != null) {
                 val intent = Intent(this, GameSliderActivity::class.java)
                 startActivity(intent)
-            }
-            else {
+            } else {
                 Toast.makeText(applicationContext, "can only start a new game ", Toast.LENGTH_SHORT).show()
             }
 
@@ -46,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         val inflater = layoutInflater
         builder.setTitle("Add players")
         val dialogLayout = inflater.inflate(R.layout.add_players_dialog, null)
-        val editText  = dialogLayout.findViewById<EditText>(R.id.playerName)
+        val editText = dialogLayout.findViewById<EditText>(R.id.playerName)
         builder.setView(dialogLayout)
         builder.setPositiveButton("Add", null)
         builder.setNegativeButton("Close") { dialogInterface, _ -> dialogInterface.dismiss() }

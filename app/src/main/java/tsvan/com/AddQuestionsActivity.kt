@@ -15,9 +15,9 @@ import tsvan.com.models.Question
 
 class AddQuestionsActivity : AppCompatActivity() {
 
-    private var dbConnect : DbConnect? = null
+    private var dbConnect: DbConnect? = null
 
-    private var packageId : Int = 0
+    private var packageId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +27,7 @@ class AddQuestionsActivity : AppCompatActivity() {
 
         this.packageId = intent.extras!!.getInt("id")
 
-        createQuestion.setOnClickListener{
+        createQuestion.setOnClickListener {
             val intent = Intent(this, AddQuestionActivity::class.java)
             intent.putExtra("id", this.packageId)
             startActivity(intent)
@@ -37,23 +37,22 @@ class AddQuestionsActivity : AppCompatActivity() {
 
     override fun onRestart() {
         super.onRestart()
-
-        val tableLayout = tableLayout.findViewById<TableLayout>(R.id.tableLayout)
-        tableLayout.removeAllViews()
         this.renderQuestions()
     }
 
     private fun renderQuestions() {
         val questions = dbConnect!!.getPackageQuestions(this.packageId)
+        val tableLayout = tableLayout.findViewById<TableLayout>(R.id.tableLayout)
+        tableLayout.removeAllViews()
 
-        for( q in questions){
+        for (q in questions) {
             this.addQuestionRow(q)
         }
     }
 
     private fun addQuestionRow(question: Question) {
         val tableLayout = tableLayout.findViewById<TableLayout>(R.id.tableLayout)
-        val tableRow  = TableRow(this)
+        val tableRow = TableRow(this)
         val rowIdText = TextView(this)
         val rowTextText = TextView(this)
         val buttonDelete = Button(this)
@@ -63,8 +62,8 @@ class AddQuestionsActivity : AppCompatActivity() {
         tableRow.addView(rowTextText)
         buttonDelete.text = getString(R.string.delete)
         buttonDelete.setOnClickListener {
-
             dbConnect!!.deleteQuestion(question.id)
+            this.renderQuestions()
         }
         tableRow.addView(buttonDelete)
         tableLayout.addView(tableRow)

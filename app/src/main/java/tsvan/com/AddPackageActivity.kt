@@ -29,6 +29,8 @@ class AddPackageActivity : AppCompatActivity() {
 
     private fun renderPackages() {
         val packages = dbConnect!!.getAllPackages()
+        val tableLayout = tableLayout.findViewById<TableLayout>(R.id.tableLayout)
+        tableLayout.removeAllViews()
 
         for (pack in packages) {
             this.addPackageRow(pack)
@@ -48,8 +50,8 @@ class AddPackageActivity : AppCompatActivity() {
         tableRow.addView(rowNameText)
         buttonDelete.text = getString(R.string.delete)
         buttonDelete.setOnClickListener {
-
             dbConnect!!.deletePackage(gamePack.id)
+            this.renderPackages()
         }
         buttonEdit.text = getString(R.string.edit)
         buttonEdit.setOnClickListener {
@@ -81,12 +83,9 @@ class AddPackageActivity : AppCompatActivity() {
             addButton.setOnClickListener {
                 //dialog.dismiss()
                 dbConnect!!.addPackage(editText.text.toString())
-                Toast.makeText(
-                    applicationContext,
-                    "Add to db- " + editText.text.toString(),
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(applicationContext, "Add to db- " + editText.text.toString(), Toast.LENGTH_SHORT).show()
                 editText?.text?.clear()
+                this.renderPackages()
             }
 
             val nextButton = dialog.getButton(AlertDialog.BUTTON_NEUTRAL)

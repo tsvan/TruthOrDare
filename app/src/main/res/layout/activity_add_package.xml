@@ -6,38 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".AddPackageActivity">
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="328dp"
-        android:layout_height="383dp"
-        android:layout_marginTop="28dp"
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="426dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3">
+        app:layout_constraintTop_toBottomOf="@+id/addPackageTextView">
 
-        <TableRow
+        <TableLayout
+            android:id="@+id/tableLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:shrinkColumns="1"
+            android:stretchColumns="1">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </TableLayout>
+    </ScrollView>
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/addPackageTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:text="TextView"
+        android:layout_marginTop="28dp"
+        android:text="@string/addPackageTittle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -49,18 +54,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout">
+        app:layout_constraintTop_toBottomOf="@+id/scrollView"
+        app:layout_constraintVertical_bias="0.259">
 
         <Button
-            android:id="@+id/button4"
-            android:layout_width="163dp"
-            android:layout_height="match_parent"
+            android:id="@+id/back_button"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/close" />
+            android:text="@string/back" />
 
         <Button
             android:id="@+id/createPackage"
-            android:layout_width="139dp"
+            android:layout_width="140dp"
+
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/create" />

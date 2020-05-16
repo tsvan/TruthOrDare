@@ -1,22 +1,24 @@
 <resources>
     <string name="app_name">TruthOrDare</string>
     <string name="truth_or_dare">Truth or dare</string>
-    <string name="exit">Exit</string>
-    <string name="continueGame">Continue</string>
-    <string name="newGame">Start new game</string>
-    <string name="enter_player_name">Enter player name</string>
-    <string name="title_activity_add_questions">Add your question</string>
+    <string name="exit">Выход</string>
+    <string name="continueGame">Продолжить</string>
+    <string name="newGame">Начать новую игру</string>
+    <string name="enter_player_name">Введите имя</string>
+    <string name="title_activity_add_questions">Введите вопрос</string>
     <string name="add_random_player">add random player</string>
     <string name="addQuestion">Add</string>
-    <string name="editPack">edit package</string>
+    <string name="editPack">Добавить пакет вопросов</string>
     <string name="title_activity_add_package">AddPackageActivity</string>
-    <string name="close">close</string>
-    <string name="create">Create</string>
-    <string name="addPackage">add package</string>
+    <string name="back">Назад</string>
+    <string name="create">Создать</string>
+    <string name="addPackage">Добавить пакет</string>
     <string name="player1">player1</string>
     <string name="player2">player2</string>
     <string name="select">select</string>
-    <string name="edit">edit</string>
-    <string name="delete">delete</string>
-    <string name="InitQuestion">click here</string>
+    <string name="edit">Редактирвать</string>
+    <string name="delete">Удалить</string>
+    <string name="InitQuestion">Кликни сюда</string>
+    <string name="packageQuestions">Вопросы пакета</string>
+    <string name="addPackageTittle">Список пакетов</string>
 </resources>
