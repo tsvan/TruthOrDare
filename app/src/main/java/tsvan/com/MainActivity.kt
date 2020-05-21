@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import tsvan.com.models.Game
 import tsvan.com.models.Player
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,9 +33,12 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, GameSliderActivity::class.java)
                 startActivity(intent)
             } else {
-                Toast.makeText(applicationContext, "can only start a new game ", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Начните новую игру", Toast.LENGTH_SHORT).show()
             }
-
+        }
+        exit.setOnClickListener {
+            finish()
+            exitProcess(0)
         }
 
     }
@@ -43,13 +47,13 @@ class MainActivity : AppCompatActivity() {
     private fun addPlayersAction() {
         val builder = AlertDialog.Builder(this)
         val inflater = layoutInflater
-        builder.setTitle("Add players")
+        builder.setTitle(getString(R.string.addPlayers))
         val dialogLayout = inflater.inflate(R.layout.add_players_dialog, null)
         val editText = dialogLayout.findViewById<EditText>(R.id.playerName)
         builder.setView(dialogLayout)
-        builder.setPositiveButton("Add", null)
-        builder.setNegativeButton("Close") { dialogInterface, _ -> dialogInterface.dismiss() }
-        builder.setNeutralButton("Next", null)
+        builder.setPositiveButton(getString(R.string.Add), null)
+        builder.setNegativeButton(getString(R.string.Close)) { dialogInterface, _ -> dialogInterface.dismiss() }
+        builder.setNeutralButton(getString(R.string.Next), null)
 
         val dialog = builder.create()
 
@@ -57,15 +61,27 @@ class MainActivity : AppCompatActivity() {
             val addButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
             addButton.setOnClickListener {
                 //dialog.dismiss()
-                Toast.makeText(applicationContext, "Add - " + editText.text.toString(), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    applicationContext,
+                    "Добавлен Игрок " + editText.text.toString(),
+                    Toast.LENGTH_SHORT
+                ).show()
                 Game.instance.players!!.add(Player(editText.text.toString()))
                 editText?.text?.clear()
             }
 
             val nextButton = dialog.getButton(AlertDialog.BUTTON_NEUTRAL)
             nextButton.setOnClickListener {
-                val intent = Intent(this, SelectPackageActivity::class.java)
-                startActivity(intent)
+                if (Game.instance.players!!.count() >= 2) {
+                    val intent = Intent(this, SelectPackageActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(
+                        applicationContext,
+                        "Нужно добавить более двух игроков",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
 

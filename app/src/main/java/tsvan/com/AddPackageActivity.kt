@@ -24,6 +24,11 @@ class AddPackageActivity : AppCompatActivity() {
             this.addPackage()
         }
 
+        back_button.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
         this.renderPackages()
     }
 
@@ -68,13 +73,12 @@ class AddPackageActivity : AppCompatActivity() {
     private fun addPackage() {
         val builder = AlertDialog.Builder(this)
         val inflater = layoutInflater
-        builder.setTitle("Add package")
+        builder.setTitle(R.string.addPackage)
         val dialogLayout = inflater.inflate(R.layout.add_package_dialog, null)
         val editText = dialogLayout.findViewById<EditText>(R.id.packageName)
         builder.setView(dialogLayout)
-        builder.setPositiveButton("Add", null)
-        builder.setNegativeButton("Close") { dialogInterface, _ -> dialogInterface.dismiss() }
-        builder.setNeutralButton("Test db", null)
+        builder.setPositiveButton(R.string.Add, null)
+        builder.setNegativeButton(R.string.Close) { dialogInterface, _ -> dialogInterface.dismiss() }
 
         val dialog = builder.create()
 
@@ -83,7 +87,7 @@ class AddPackageActivity : AppCompatActivity() {
             addButton.setOnClickListener {
                 //dialog.dismiss()
                 dbConnect!!.addPackage(editText.text.toString())
-                Toast.makeText(applicationContext, "Add to db- " + editText.text.toString(), Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Добавлен пакет - " + editText.text.toString(), Toast.LENGTH_SHORT).show()
                 editText?.text?.clear()
                 this.renderPackages()
             }

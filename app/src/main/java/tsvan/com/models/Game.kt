@@ -21,14 +21,14 @@ class Game {
     private fun formatQuestionText(question : String) :String {
         var player1 = instance.players!!.random()
         var player2 = instance.players!!.random()
-        while (instance.players!!.count() >= 2 && player1 == player2 ) {
+        while (player1 == player2 ) {
             player1 = instance.players!!.random()
             player2 = instance.players!!.random()
         }
 
         var tmp = question
-        tmp = tmp.replace("%PLAYER1%", instance.players!!.random().name)
-        tmp = tmp.replace("%PLAYER2%", instance.players!!.random().name)
+        tmp = tmp.replace("%PLAYER1%", player1.name)
+        tmp = tmp.replace("%PLAYER2%", player2.name)
         return tmp
     }
 

@@ -6,7 +6,6 @@
     <string name="newGame">Начать новую игру</string>
     <string name="enter_player_name">Введите имя</string>
     <string name="title_activity_add_questions">Введите вопрос</string>
-    <string name="add_random_player">add random player</string>
     <string name="addQuestion">Add</string>
     <string name="editPack">Добавить пакет вопросов</string>
     <string name="title_activity_add_package">AddPackageActivity</string>
@@ -15,10 +14,14 @@
     <string name="addPackage">Добавить пакет</string>
     <string name="player1">player1</string>
     <string name="player2">player2</string>
-    <string name="select">select</string>
+    <string name="select">Выбрать</string>
     <string name="edit">Редактирвать</string>
     <string name="delete">Удалить</string>
     <string name="InitQuestion">Кликни сюда</string>
     <string name="packageQuestions">Вопросы пакета</string>
     <string name="addPackageTittle">Список пакетов</string>
+    <string name="addPlayers">Добавить игроков</string>
+    <string name="Add">Добавить</string>
+    <string name="Close">Закрыть</string>
+    <string name="Next">Далее</string>
 </resources>

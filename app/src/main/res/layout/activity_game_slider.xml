@@ -8,9 +8,12 @@
 
     <TextView
         android:id="@+id/currentQuestion"
-        android:layout_width="285dp"
-        android:layout_height="179dp"
+        android:layout_width="290dp"
+        android:layout_height="510dp"
+        android:gravity="center"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

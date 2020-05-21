@@ -32,6 +32,11 @@ class AddQuestionsActivity : AppCompatActivity() {
             intent.putExtra("id", this.packageId)
             startActivity(intent)
         }
+
+        back_button.setOnClickListener {
+            val intent = Intent(this, AddPackageActivity::class.java)
+            startActivity(intent)
+        }
         this.renderQuestions()
     }
 
