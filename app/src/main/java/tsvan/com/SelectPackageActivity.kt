@@ -3,10 +3,7 @@ package tsvan.com
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TableLayout
-import android.widget.TableRow
-import android.widget.TextView
+import android.widget.*
 import kotlinx.android.synthetic.main.activity_add_package.*
 import tsvan.com.infrastructure.DbConnect
 import tsvan.com.models.Game
@@ -27,23 +24,25 @@ class SelectPackageActivity : AppCompatActivity() {
 
     private fun renderPackages() {
         val packages = dbConnect!!.getAllPackages()
+        if(packages.isEmpty()) {
+            Toast.makeText(applicationContext, "Нет доступных пакетов вопросов. Создайте хотя бы один", Toast.LENGTH_LONG).show()
+        }
 
         for (pack in packages) {
             this.addPackageRow(pack)
         }
     }
 
-
     private fun addPackageRow(gamePack: GamePackage) {
         val tableLayout = tableLayout.findViewById<TableLayout>(R.id.tableLayout)
         val tableRow = TableRow(this)
-        val rowIdText = TextView(this)
-        val rowNameText = TextView(this)
+        val id = TextView(this)
+        val name = TextView(this)
         val buttonEdit = Button(this)
-        rowIdText.text = gamePack.id.toString()
-        rowNameText.text = gamePack.name
-        tableRow.addView(rowIdText)
-        tableRow.addView(rowNameText)
+        id.text = gamePack.id.toString()
+        name.text = gamePack.name
+        tableRow.addView(id)
+        tableRow.addView(name)
 
         buttonEdit.text = getString(R.string.select)
         buttonEdit.setOnClickListener {

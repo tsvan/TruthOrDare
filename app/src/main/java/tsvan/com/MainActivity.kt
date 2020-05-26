@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         val inflater = layoutInflater
         builder.setTitle(getString(R.string.addPlayers))
         val dialogLayout = inflater.inflate(R.layout.add_players_dialog, null)
-        val editText = dialogLayout.findViewById<EditText>(R.id.playerName)
+        val playerName = dialogLayout.findViewById<EditText>(R.id.playerName)
         builder.setView(dialogLayout)
         builder.setPositiveButton(getString(R.string.Add), null)
         builder.setNegativeButton(getString(R.string.Close)) { dialogInterface, _ -> dialogInterface.dismiss() }
@@ -60,14 +60,9 @@ class MainActivity : AppCompatActivity() {
         dialog.setOnShowListener {
             val addButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
             addButton.setOnClickListener {
-                //dialog.dismiss()
-                Toast.makeText(
-                    applicationContext,
-                    "Добавлен Игрок " + editText.text.toString(),
-                    Toast.LENGTH_SHORT
-                ).show()
-                Game.instance.players!!.add(Player(editText.text.toString()))
-                editText?.text?.clear()
+                Toast.makeText(applicationContext, "Добавлен Игрок " + playerName.text.toString(), Toast.LENGTH_SHORT).show()
+                Game.instance.players!!.add(Player(playerName.text.toString()))
+                playerName?.text?.clear()
             }
 
             val nextButton = dialog.getButton(AlertDialog.BUTTON_NEUTRAL)
@@ -76,11 +71,7 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(this, SelectPackageActivity::class.java)
                     startActivity(intent)
                 } else {
-                    Toast.makeText(
-                        applicationContext,
-                        "Нужно добавить более двух игроков",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(applicationContext, "Нужно добавить более двух игроков", Toast.LENGTH_SHORT).show()
                 }
             }
         }

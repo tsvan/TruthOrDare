@@ -45,14 +45,14 @@ class AddPackageActivity : AppCompatActivity() {
     private fun addPackageRow(gamePack: GamePackage) {
         val tableLayout = tableLayout.findViewById<TableLayout>(R.id.tableLayout)
         val tableRow = TableRow(this)
-        val rowIdText = TextView(this)
-        val rowNameText = TextView(this)
+        val id = TextView(this)
+        val name = TextView(this)
         val buttonDelete = Button(this)
         val buttonEdit = Button(this)
-        rowIdText.text = gamePack.id.toString()
-        rowNameText.text = gamePack.name
-        tableRow.addView(rowIdText)
-        tableRow.addView(rowNameText)
+        id.text = gamePack.id.toString()
+        name.text = gamePack.name
+        tableRow.addView(id)
+        tableRow.addView(name)
         buttonDelete.text = getString(R.string.delete)
         buttonDelete.setOnClickListener {
             dbConnect!!.deletePackage(gamePack.id)
@@ -75,7 +75,7 @@ class AddPackageActivity : AppCompatActivity() {
         val inflater = layoutInflater
         builder.setTitle(R.string.addPackage)
         val dialogLayout = inflater.inflate(R.layout.add_package_dialog, null)
-        val editText = dialogLayout.findViewById<EditText>(R.id.packageName)
+        val packageName = dialogLayout.findViewById<EditText>(R.id.packageName)
         builder.setView(dialogLayout)
         builder.setPositiveButton(R.string.Add, null)
         builder.setNegativeButton(R.string.Close) { dialogInterface, _ -> dialogInterface.dismiss() }
@@ -85,19 +85,16 @@ class AddPackageActivity : AppCompatActivity() {
         dialog.setOnShowListener {
             val addButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
             addButton.setOnClickListener {
-                //dialog.dismiss()
-                dbConnect!!.addPackage(editText.text.toString())
-                Toast.makeText(applicationContext, "Добавлен пакет - " + editText.text.toString(), Toast.LENGTH_SHORT).show()
-                editText?.text?.clear()
+                dbConnect!!.addPackage(packageName.text.toString())
+                Toast.makeText(applicationContext, "Добавлен пакет - " + packageName.text.toString(), Toast.LENGTH_SHORT).show()
+                packageName?.text?.clear()
                 this.renderPackages()
             }
 
             val nextButton = dialog.getButton(AlertDialog.BUTTON_NEUTRAL)
             nextButton.setOnClickListener {
                 val list = dbConnect!!.getAllPackages()
-
                 Toast.makeText(applicationContext, list.toString(), Toast.LENGTH_LONG).show()
-
             }
         }
 

@@ -17,28 +17,22 @@ class AddQuestionActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_question)
         dbConnect = DbConnect(this)
 
-
         val packageId = intent.extras!!.getInt("id")
 
-        val editText = findViewById<EditText>(R.id.questionEditText)
+        val question = findViewById<EditText>(R.id.questionEditText)
 
         playerOneButton.setOnClickListener {
-            val position = editText.selectionStart
-            val tmp = StringBuilder(editText.text).insert(position, "%PLAYER1%").toString()
-            Toast.makeText(applicationContext, tmp, Toast.LENGTH_SHORT).show()
-            editText.setText(tmp)
+            question.setText(StringBuilder(question.text).insert( question.selectionStart, "%PLAYER1%").toString())
         }
 
         playerTwoButton.setOnClickListener {
-            val position = editText.selectionStart
-            val tmp = StringBuilder(editText.text).insert(position, "%PLAYER2%").toString()
-            Toast.makeText(applicationContext, tmp, Toast.LENGTH_SHORT).show()
-            editText.setText(tmp)
+            question.setText(StringBuilder(question.text).insert( question.selectionStart, "%PLAYER2%").toString())
         }
 
-
         addQuestion.setOnClickListener {
-            dbConnect!!.addQuestion(packageId, editText.text.toString())
+            dbConnect!!.addQuestion(packageId, question.text.toString())
+            Toast.makeText(applicationContext, "Вопрос добавлен", Toast.LENGTH_SHORT).show()
+            question.text.clear()
         }
     }
 }

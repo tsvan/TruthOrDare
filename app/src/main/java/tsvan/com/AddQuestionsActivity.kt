@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.activity_add_questions.*
 import tsvan.com.infrastructure.DbConnect
 import tsvan.com.models.Question
 
-
 class AddQuestionsActivity : AppCompatActivity() {
 
     private var dbConnect: DbConnect? = null
@@ -58,13 +57,13 @@ class AddQuestionsActivity : AppCompatActivity() {
     private fun addQuestionRow(question: Question) {
         val tableLayout = tableLayout.findViewById<TableLayout>(R.id.tableLayout)
         val tableRow = TableRow(this)
-        val rowIdText = TextView(this)
-        val rowTextText = TextView(this)
+        val id = TextView(this)
+        val questionText = TextView(this)
         val buttonDelete = Button(this)
-        rowIdText.text = question.id.toString()
-        rowTextText.text = question.text
-        tableRow.addView(rowIdText)
-        tableRow.addView(rowTextText)
+        id.text = question.id.toString()
+        questionText.text = question.text
+        tableRow.addView(id)
+        tableRow.addView(questionText)
         buttonDelete.text = getString(R.string.delete)
         buttonDelete.setOnClickListener {
             dbConnect!!.deleteQuestion(question.id)

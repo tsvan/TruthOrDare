@@ -15,9 +15,7 @@ class GameSliderActivity : AppCompatActivity() {
         questionTextView.text = getString(R.string.InitQuestion)
 
         questionTextView.setOnClickListener {
-
             questionTextView.text = Game.instance.getNextQuestion()
-
         }
     }
 }

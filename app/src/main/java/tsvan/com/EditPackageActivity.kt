@@ -10,8 +10,8 @@ class EditPackageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_package)
 
-        val b = intent.extras
-        val id = b!!.getInt("id")
+        val extra = intent.extras
+        val id = extra!!.getInt("id")
 
         Toast.makeText(applicationContext, "id- $id", Toast.LENGTH_SHORT).show()
 
