@@ -14,6 +14,8 @@ class GameSliderActivity : AppCompatActivity() {
         val questionTextView: TextView = findViewById(R.id.currentQuestion)
         questionTextView.text = getString(R.string.InitQuestion)
 
+        Game.instance.setStack()
+
         questionTextView.setOnClickListener {
             questionTextView.text = Game.instance.getNextQuestion()
         }
